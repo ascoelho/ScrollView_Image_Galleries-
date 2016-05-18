@@ -57,19 +57,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ND9-Oc-86M">
-                                <rect key="frame" x="16" y="40" width="287" height="540"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ND9-Oc-86M">
+                                <rect key="frame" x="20" y="64" width="560" height="516"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KWt-v2-OPa">
-                                        <rect key="frame" x="0.0" y="0.0" width="287" height="540"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KWt-v2-OPa">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="516"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="KWt-v2-OPa" secondAttribute="bottom" id="GGq-FN-U4v"/>
+                                    <constraint firstItem="KWt-v2-OPa" firstAttribute="centerX" secondItem="ND9-Oc-86M" secondAttribute="centerX" id="ena-OU-rdg"/>
+                                    <constraint firstItem="KWt-v2-OPa" firstAttribute="leading" secondItem="ND9-Oc-86M" secondAttribute="leading" id="hKB-vr-wBQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="KWt-v2-OPa" secondAttribute="trailing" id="lv5-p3-qld"/>
+                                    <constraint firstItem="KWt-v2-OPa" firstAttribute="top" secondItem="ND9-Oc-86M" secondAttribute="top" id="qa7-eA-hYW"/>
+                                    <constraint firstItem="KWt-v2-OPa" firstAttribute="centerY" secondItem="ND9-Oc-86M" secondAttribute="centerY" id="zMY-BI-Heb"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="B2S-Cq-pEH" id="Pot-lT-rtS"/>
                                 </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wyj-7f-x9g" firstAttribute="top" secondItem="ND9-Oc-86M" secondAttribute="bottom" constant="20" id="Yww-vI-Po8"/>
+                            <constraint firstItem="ND9-Oc-86M" firstAttribute="leading" secondItem="Qas-QT-lXd" secondAttribute="leadingMargin" id="cxe-Zp-til"/>
+                            <constraint firstItem="ND9-Oc-86M" firstAttribute="top" secondItem="Pg5-Vh-vOF" secondAttribute="bottom" id="epJ-Wm-tAt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ND9-Oc-86M" secondAttribute="trailing" id="fcI-pS-vvs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iya-iT-SbU"/>
                     <connections>

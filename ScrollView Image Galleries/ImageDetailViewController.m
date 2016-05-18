@@ -17,11 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    self.scrollView.delegate=self;
-    self.scrollView.minimumZoomScale = 1;
-    self.scrollView.maximumZoomScale = 10;
+    self.imageView.image = self.passedImage;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.scrollView.minimumZoomScale = 1.0;
+    self.scrollView.maximumZoomScale = 2.0;
+
 }
+
 
 
 
@@ -41,8 +45,6 @@
 */
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    
-    
     
     return self.imageView;
     

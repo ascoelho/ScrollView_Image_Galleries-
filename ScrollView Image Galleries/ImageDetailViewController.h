@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ImageDetailViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImage *passedImage;
 
 
 @end

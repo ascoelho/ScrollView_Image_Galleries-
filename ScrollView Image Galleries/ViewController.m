@@ -10,7 +10,6 @@
 #import "ImageDetailViewController.h"
 
 @interface ViewController ()
-
 @end
 
 @implementation ViewController
@@ -18,15 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
-//    UIView *containerView = [UIView new];
-//    containerView.translatesAutoresizingMaskIntoConstraints = NO;
-//    containerView.frame = self.scrollView.frame;
-//    
-//    [self.scrollView addSubview:containerView];
-    
+    self.pageControl = [[UIPageControl alloc] init];
+    self.pageControl.numberOfPages = 3;
 
+    [self.view addSubview:self.pageControl];
+    
+    
     
     self.imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Lighthouse.jpg"]];
     self.imageView1.translatesAutoresizingMaskIntoConstraints = NO;
@@ -141,11 +138,8 @@
 
 
 
-    
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailedImage)];
-    
-    [self.scrollView addGestureRecognizer:tap];
+
+
 }
 
 - (void)viewDidLayoutSubviews {
@@ -153,23 +147,64 @@
     CGFloat combinedContentWidth = self.scrollView.frame.size.width * 3;
     self.scrollView.contentSize = CGSizeMake(combinedContentWidth, self.scrollView.frame.size.height);
     
+    self.imageView1.tag = 1;
+    self.imageView2.tag = 2;
+    self.imageView3.tag = 3;
+    
+    self.imageView1.userInteractionEnabled = YES;
+    self.imageView2.userInteractionEnabled = YES;
+    self.imageView3.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailedImage:)];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailedImage:)];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailedImage:)];
+
+    [self.imageView1 addGestureRecognizer:tap1];
+    [self.imageView2 addGestureRecognizer:tap2];
+    [self.imageView3 addGestureRecognizer:tap3];
+
+    
 }
 
 
 
-- (void)showDetailedImage{
+- (void)showDetailedImage:(UITapGestureRecognizer *)tap{
     
-    [self performSegueWithIdentifier:@"showImage" sender:self];
+    
+    [self performSegueWithIdentifier:@"showImage" sender:tap];
+
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id) sender {
+    
+    UITapGestureRecognizer *tap = sender;
+    
+    ImageDetailViewController *imageDetailVC = (ImageDetailViewController *)[segue destinationViewController];
+    
+    if (tap.view.tag == 1) {
+        imageDetailVC.passedImage = self.imageView1.image;
+    }
+    if (tap.view.tag == 2) {
+        imageDetailVC.passedImage = self.imageView2.image;
+    }
+    if (tap.view.tag == 3) {
+        imageDetailVC.passedImage = self.imageView3.image;
+    }
+
+
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITapGestureRecognizer *)tap {
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
     
-
-//    ImageDetailViewController *imageDetailVC = [[ImageDetailViewController alloc] init];
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    NSInteger fractionPage = (NSInteger) (self.scrollView.contentOffset.x / pageWidth);
     
+    self.pageControl.currentPage = fractionPage;
+    
+    NSLog(@"%ld",self.pageControl.currentPage);
+   
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
